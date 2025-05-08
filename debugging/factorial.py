@@ -5,8 +5,19 @@ def factorial(n):
     result = 1
     while n > 1:
         result *= n
-        n -= 1  # Correction : on décrémente n à chaque tour
+        n -= 1
     return result
 
-f = factorial(int(sys.argv[1]))
-print(f)
+if len(sys.argv) != 2:
+    print("Usage: ./factorial.py <non-negative integer>")
+    sys.exit(1)
+
+try:
+    n = int(sys.argv[1])
+    if n < 0:
+        raise ValueError
+except ValueError:
+    print("Please provide a non-negative integer.")
+    sys.exit(1)
+
+print(factorial(n))
